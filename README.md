@@ -4,4 +4,4 @@ Super quick and dirty script. Checks [COVID-19 Vaccine Spotter](https://www.vacc
 
 ## Usage
 
-Run `python check_vaccine_spotter.py` from Terminal or Command Prompt. Press `Ctrl + C` to terminate program. (Like I said, quick and dirty. 😊)
+Run `python check_vaccine_spotter.py` from Terminal or Command Prompt. Press `Ctrl + C` to terminate script.
