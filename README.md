@@ -1,10 +1,7 @@
-# covid19-vaccine-checker
+# vaccine-spotter-checker
 
-Super quick and dirty script. Checks CVS Pharamacy website every (default) 10 seconds to see if vaccines are available in Massachusetts -- plays sound if vaccine is found. Sound works on Windows only at the moment.
+Super quick and dirty script. Checks [COVID-19 Vaccine Spotter](https://www.vaccinespotter.org/) website every (default) 30 seconds to see if vaccines are available in a state -- plays sound if vaccine is found. Works on Windows and Mac/Linux. Uses the "Very Beta API" on Vaccine Spotter, is subject to breaking.
 
-## Potential to-dos:
-- Add other pharmacies (e.g. Walgreens, probably a different program)
-- Add other OS support for sound (Mac/Linux)
-- Add email notification support
-- Add Twilio (text) support
-- Fill in forms automatically (big stretch)
+## Usage
+
+Run `python check_vaccine_spotter.py` from Terminal or Command Prompt. Press `Ctrl + C` to terminate program. (Like I said, quick and dirty. 😊)
