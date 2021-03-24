@@ -1,4 +1,4 @@
-# vaccine-spotter-checker
+# covid-vaccine-spotter-checker
 
 Super quick and dirty script. Checks [COVID-19 Vaccine Spotter](https://www.vaccinespotter.org/) website every (default) 30 seconds to see if vaccines are available in a state -- plays sound if vaccine is found. Works on Windows and Mac/Linux. Uses the "Very Beta API" on Vaccine Spotter, is subject to breaking.
 
