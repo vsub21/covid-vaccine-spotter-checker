@@ -6,8 +6,6 @@ from time import time, localtime, sleep, strftime
 from datetime import datetime
 import sched
 
-import winsound
-
 USPS_STATE_ABB = {
     "AL": "Alabama",
     "AK": "Alaska",
