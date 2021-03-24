@@ -111,9 +111,11 @@ def check_cvs(os_type, abb):
                 winsound.Beep(BEEP_FREQ, BEEP_DURATION)
             else: # Mac/Linux
                 os.system(f"play -nq -t alsa synth {BEEP_DURATION} sine {BEEP_FREQ}")
+    else:
+        print("No appointments found.")
 
 def daemon(local_handler, t, os_type, abb, freq):
-    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print(f"COVID-19 Vaccine Spotter last checked: {strftime('%m/%d/%Y, %H:%M:%S', localtime())}")
     check_cvs(os_type, abb)
     local_handler.enterabs(t + freq, 1, daemon, (local_handler, t + freq, os_type, abb, freq))
