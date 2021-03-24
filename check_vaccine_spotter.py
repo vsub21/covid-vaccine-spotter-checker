@@ -6,6 +6,12 @@ from time import time, localtime, sleep, strftime
 from datetime import datetime
 import sched
 
+os_type = input("Enter '0' for Windows, '1' for Linux/Mac: ")
+while os_type != "0" and os_type != "1":
+    os_type = input("Invalid entry. Enter '0' for Windows, '1' for Linux/Mac: ")
+if os_type == "0":
+    import winsound
+
 USPS_STATE_ABB = {
     "AL": "Alabama",
     "AK": "Alaska",
@@ -108,7 +114,8 @@ def check_cvs(os_type, abb):
             if os_type == "0": # Windows
                 winsound.Beep(BEEP_FREQ, BEEP_DURATION)
             else: # Mac/Linux
-                os.system(f"play -nq -t alsa synth {BEEP_DURATION} sine {BEEP_FREQ}")
+                print("\a") # terminal warning bell sound
+                sleep(0.2)
     else:
         print("No appointments found.\n")
 
@@ -126,30 +133,20 @@ def daemon(local_handler, t, os_type, abb, freq):
     check_cvs(os_type, abb)
     local_handler.enterabs(t + freq, 1, daemon, (local_handler, t + freq, os_type, abb, freq))
 
-def main():
-    os_type = input("Enter '0' for Windows, '1' for Linux/Mac: ")
-    while os_type != "0" and os_type != "1":
-        os_type = input("Invalid entry. Enter '0' for Windows, '1' for Linux/Mac: ")
-    if os_type == "0":
-        import winsound
+abb = input("Enter the 2-letter abbreviation for your U.S. state: ").upper()
+while abb not in USPS_STATE_ABB.keys():
+    abb = input("Invalid entry. Enter the 2-letter abbreviation for your U.S. state: ")
+state = USPS_STATE_ABB[abb]
+print(f"Checking for vaccines in state: {state}")
 
-    abb = input("Enter the 2-letter abbreviation for your U.S. state: ").upper()
-    while abb not in USPS_STATE_ABB.keys():
-        abb = input("Invalid entry. Enter the 2-letter abbreviation for your U.S. state: ")
-    state = USPS_STATE_ABB[abb]
-    print(f"Checking for vaccines in state: {state}")
+freq = input("Enter frequency of checking website (in whole number of seconds). Leave blank for default 30 seconds: ")
+if not freq:
+    freq = "30"
+while not freq.isdigit():
+    freq = input("Invalid entry. Enter frequency of checking website (in whole number of seconds). Leave blank for default 30 seconds: ")
+freq = int(freq)
 
-    freq = input("Enter frequency of checking website (in whole number of seconds). Leave blank for default 30 seconds: ")
-    if not freq:
-        freq = "30"
-    while not freq.isdigit():
-        freq = input("Invalid entry. Enter frequency of checking website (in whole number of seconds). Leave blank for default 30 seconds: ")
-    freq = int(freq)
-
-    handler = sched.scheduler(time, sleep)
-    t = time()
-    handler.enter(0, 1, daemon, (handler, t, os_type, abb, freq))
-    handler.run()
-
-if __name__ == "__main__":
-    main()
+handler = sched.scheduler(time, sleep)
+t = time()
+handler.enter(0, 1, daemon, (handler, t, os_type, abb, freq))
+handler.run()
