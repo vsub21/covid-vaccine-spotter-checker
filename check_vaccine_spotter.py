@@ -112,7 +112,15 @@ def check_cvs(os_type, abb):
             else: # Mac/Linux
                 os.system(f"play -nq -t alsa synth {BEEP_DURATION} sine {BEEP_FREQ}")
     else:
-        print("No appointments found.")
+        print("No appointments found.\n")
+
+        lf = json["metadata"]["appointments_last_fetched"]
+        dot_pos = lf.find('.')
+        plus_pos = lf.find('+')
+        lf = (lf[:dot_pos] + lf[plus_pos:])
+        last_fetched = f"Last fetched from source: {datetime.fromisoformat(lf).astimezone().strftime('%m/%d/%Y, %H:%M:%S')}"
+
+        print(last_fetched)
 
 def daemon(local_handler, t, os_type, abb, freq):
     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
