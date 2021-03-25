@@ -5,3 +5,5 @@ Super quick and dirty script. Checks [COVID-19 Vaccine Spotter](https://www.vacc
 ## Usage
 
 Run `python check_vaccine_spotter.py` from Terminal or Command Prompt. Follow the on-screen prompts to enter your OS, U.S. state, and specified refresh rate. Press `Ctrl + C` to terminate script.
+
+Alternatively, if you do not have Python installed, download the executable for respective OS (Windows or Mac/Linux) and run. For Windows, double-click the .exe file after downloading. For Mac/Linux, open Terminal, navigate to the folder containing the downloaded file, and type `./check_vaccine_spotter`.
