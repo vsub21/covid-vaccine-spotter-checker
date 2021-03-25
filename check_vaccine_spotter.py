@@ -135,7 +135,7 @@ def daemon(local_handler, t, os_type, abb, freq):
 
 abb = input("Enter the 2-letter abbreviation for your U.S. state: ").upper()
 while abb not in USPS_STATE_ABB.keys():
-    abb = input("Invalid entry. Enter the 2-letter abbreviation for your U.S. state: ")
+    abb = input("Invalid entry. Enter the 2-letter abbreviation for your U.S. state: ").upper()
 state = USPS_STATE_ABB[abb]
 print(f"Checking for vaccines in state: {state}")
 
